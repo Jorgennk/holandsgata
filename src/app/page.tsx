@@ -13,7 +13,7 @@ const Home = () => {
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
-    fetch("/api/shields")
+    fetch("/data/shields.json")
       .then((res) => res.json())
       .then((data: string[]) => {
         setFiles(data);

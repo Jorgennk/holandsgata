@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: "export", // This replaces the need for 'next export'
+  output: "export", // Ensures static export instead of using server features
   assetPrefix:
     process.env.NODE_ENV === "production" ? "/kommune-shield-game/" : "",
   basePath: process.env.NODE_ENV === "production" ? "/kommune-shield-game" : "",
   images: {
-    unoptimized: true, // Required for static exports with Next.js
+    unoptimized: true, // Required for GitHub Pages
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

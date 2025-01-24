@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import "../styles/globals.css";
 
+// Import the statically generated shield list
+import shieldsData from "../../public/shields.json";
+
 const Home = () => {
   const [files, setFiles] = useState<string[]>([]);
   const [currentShield, setCurrentShield] = useState<string>("");
@@ -13,12 +16,8 @@ const Home = () => {
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
-    fetch("/api/shields")
-      .then((res) => res.json())
-      .then((data: string[]) => {
-        setFiles(data);
-        loadNewQuestion(data);
-      });
+    setFiles(shieldsData);
+    loadNewQuestion(shieldsData);
   }, []);
 
   const loadNewQuestion = (filesList: string[]) => {

@@ -1,8 +1,8 @@
-/** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig = {
-  output: "export", // Ensures static HTML export
-  basePath: "/holandsgata", // Update with your GitHub repo name
-  trailingSlash: true, // Ensures URLs work correctly
+  ...(isProd && { output: "export" }), // Only apply static export in production
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;

@@ -8,20 +8,23 @@
     "lint": "next lint",
     "build": "next build",
     "export": "next export",
-    "deploy": "npm run build && npm run export && touch out/.nojekyll && npx gh-pages -d out"
+    "deploy": "npm run build && npm run export && touch out/.nojekyll && npx gh-pages -d out",
+    "preexport": "ts-node scripts/generateShieldList.ts",
+    "build:static": "next build && next export"
   },
   "dependencies": {
+    "next": "15.1.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.4"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20.17.16",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
-    "@eslint/eslintrc": "^3"
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
   }
 }

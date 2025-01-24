@@ -22,14 +22,19 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Generate shields list
+        run: |
+          npx tsx scripts/generateShieldList.ts
+        shell: bash
+
       - name: Build the Next.js project
         env:
-          NEXT_PUBLIC_BASE_PATH: "/holandsgata"
           NEXT_PUBLIC_GITHUB_PAGES: "true"
         run: npm run build && npm run export
 
       - name: Configure GitHub Pages
         run: |
+          mkdir -p out  # Ensure 'out' directory exists
           touch out/.nojekyll  # Prevent GitHub Pages from ignoring files starting with '_'
           echo 'holandsgata.no' > out/CNAME  # Replace with your custom domain if using
 
@@ -39,4 +44,3 @@ jobs:
           branch: gh-pages # Deployment branch
           folder: out # Output directory (Next.js exports to "out" by default)
           clean: true # Remove previous files before deployment
-

@@ -24,7 +24,7 @@ jobs:
 
       - name: Generate shields list
         run: |
-          npx tsx scripts/generateShieldList.ts
+          npx tsx scripts/generateShieldList.mjs
         shell: bash
 
       - name: Build the Next.js project

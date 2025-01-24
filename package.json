@@ -9,7 +9,7 @@
     "build": "next build",
     "export": "next export",
     "deploy": "npm run build && npm run export && touch out/.nojekyll && npx gh-pages -d out",
-    "preexport": "ts-node scripts/generateShieldList.ts",
+    "preexport": "ts-node scripts/generateShieldList.mjs",
     "build:static": "next build && next export"
   },
   "dependencies": {

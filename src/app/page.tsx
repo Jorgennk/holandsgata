@@ -13,7 +13,7 @@ const Home = () => {
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
-    fetch("/data/shields.json")
+    fetch("/api/shields")
       .then((res) => res.json())
       .then((data: string[]) => {
         setFiles(data);
@@ -42,10 +42,10 @@ const Home = () => {
     setSelectedAnswer(answer);
     setIsAnswered(true);
     if (answer === currentShield) {
-      setMessage("✅ Herran er riktig!");
+      setMessage("✅ Rikitg!");
     } else {
       setMessage(
-        `❌ Fejl, detta var ${currentShield
+        `❌ Feil, herran var ${currentShield
           .replace("_komm.svg", "")
           .replace(/_/g, " ")}`
       );
@@ -87,7 +87,7 @@ const Home = () => {
       {message && <p>{message}</p>}
       {isAnswered && (
         <button className="nextButton" onClick={() => loadNewQuestion(files)}>
-          Next
+          Neste
         </button>
       )}
     </div>

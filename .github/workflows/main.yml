@@ -24,9 +24,9 @@ jobs:
 
       - name: Build the Next.js project
         env:
-          NEXT_PUBLIC_BASE_PATH: "/holandsgata" # Replace with your GitHub repo name if using subpath
+          NEXT_PUBLIC_BASE_PATH: "/holandsgata"
           NEXT_PUBLIC_GITHUB_PAGES: "true"
-        run: npm run build && npm run deploy
+        run: npm run build && npm run export
 
       - name: Configure GitHub Pages
         run: |

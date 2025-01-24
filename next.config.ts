@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
+const isProd = process.env.NODE_ENV === "production";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+module.exports = {
+  reactStrictMode: true,
+  assetPrefix: isProd ? "/holandsgata" : "",
+  basePath: isProd ? "/holandsgata" : "",
+  images: {
+    unoptimized: true, // Required for static exports
+  },
 };
-
-export default nextConfig;

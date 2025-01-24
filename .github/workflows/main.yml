@@ -1,0 +1,42 @@
+name: Deploy Next.js to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main 
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # Specify the Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the Next.js project
+        env:
+          NEXT_PUBLIC_BASE_PATH: '/holandsgata'  # Replace with your GitHub repo name if using subpath
+          NEXT_PUBLIC_GITHUB_PAGES: 'true'
+        run: npm run build && npm run export
+
+      - name: Configure GitHub Pages
+        run: |
+          touch out/.nojekyll  # Prevent GitHub Pages from ignoring files starting with '_'
+          echo 'holandsgata.no' > out/CNAME  # Replace with your custom domain if using
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Deployment branch
+          folder: out  # Output directory (Next.js exports to "out" by default)
+          clean: true  # Remove previous files before deployment
+

@@ -51,13 +51,25 @@ const Home = () => {
     }
   };
 
+  let basePath = ""
+
+  if (typeof window !== "undefined") {
+    const pathname = window.location.pathname;
+    basePath = pathname.split('/')[1];
+
+    if (basePath !== ""){
+      basePath = "/" + basePath;
+    }
+
+  }
+
   return (
     <div className="container">
       <h1>Hvilken kommune er detta a?</h1>
       {currentShield && (
         <div className="shieldContainer">
           <Image
-            src={`/kommunevapen/${currentShield}`}
+            src={`${basePath}/kommunevapen/${currentShield}`}
             alt="Municipality Shield"
             width={300}
             height={300}
